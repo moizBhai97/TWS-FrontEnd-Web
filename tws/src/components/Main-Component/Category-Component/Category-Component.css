@@ -1,0 +1,99 @@
+.categories {
+    margin-bottom: 50px;
+    background-color: #f5f5f5;
+    padding: 10px 0;
+}
+
+.categories.fixed {
+    position: fixed;
+    top: 80px;
+    width: 100%; /* Make the fixed bar take the full width of the viewport */
+    z-index: 1;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease; /* Add a smooth transition for background color change */
+}
+
+.category-scroll {
+    display: flex;
+    margin: 0 auto;
+    flex-wrap: wrap;
+    overflow-x: hidden;
+    justify-content: center;
+    gap: 20px;
+    width: 90%;
+    white-space: nowrap;
+    transition: flex-wrap 0.1s ease;
+}
+
+.category {
+    padding: 10px;
+    color: rgb(73, 73, 73);
+    cursor: pointer;
+    border: 0px;
+    border-radius: 20px;
+    margin-right: 5px;
+    opacity: 0;
+    background-color: #e2e1e1;
+    animation: fadeIn-o 0.3s ease 0.3s forwards;
+}
+
+.category:hover {
+    background-color: rgb(250, 191, 44);
+    color: black;
+}
+
+.category.active {
+    background-color: rgb(250, 191, 44);
+    font-weight: bold;
+    color: black;
+}
+
+.categories.scrolled .category-scroll {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    animation: overflowIn 0.3s ease 0.3s forwards;
+}
+
+.categories.scrolled .category {
+    opacity: 0;
+    animation: fadeIn 0.3s ease 0.3s forwards;
+}
+
+@keyframes fadeIn-o {
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes overflowIn {
+    to {
+        overflow-x: auto;
+    }
+}
+
+/* Works on Firefox */
+.category-scroll {
+    scrollbar-width: thin;
+    scrollbar-color: transparent rgb(250, 191, 44);
+}
+
+/* Works on Chrome, Edge, and Safari */
+.category-scroll::-webkit-scrollbar {
+    width: 0px;
+}
+
+.category-scroll::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.category-scroll::-webkit-scrollbar-thumb {
+    background-color: transparent;
+    border-radius: 0px;
+    border-bottom: 3px solid rgb(250, 191, 44);
+}
