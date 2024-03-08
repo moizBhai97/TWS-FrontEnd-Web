@@ -62,24 +62,31 @@ const Cart = () => {
 
   return (
     <div className="cart" ref={cartRef}>
-      <h2>Your Cart</h2>
-      <button onClick={handleClearCart}>Clear Cart</button>
+      <div className="cart-header">
+        <h2>Your Cart</h2>
+        <span className="clear-cart" onClick={handleClearCart}>Clear Cart</span>
+      </div>
       {items.map(item => (
         <div key={item.id} className="cart-item">
-          <img src={item.image} alt={item.name} />
-          <div>{item.description}</div>
-          <div>{item.price}</div>
-          <div>
-            <button onClick={() => handleRemoveClick(item)}>-</button>
-            <span>{item.quantity}</span>
-            <button onClick={() => handleAddClick(item)}>+</button>
+          <img className="cart-item-image" src={item.image} alt={item.name} />
+          <div className="cart-item-info">
+            <div className="cart-item-name">{item.name}</div>
+            <div className="cart-item-description">{item.description}</div>
+            <div className="cart-item-price">{item.price}</div>
+            <div className="cart-item-actions">
+              <button className="cart-item-button" onClick={() => handleRemoveClick(item)}>-</button>
+              <span className="cart-item-quantity">{item.quantity}</span>
+              <button className="cart-item-button" onClick={() => handleAddClick(item)}>+</button>
+            </div>
           </div>
-          <img src="/assets/images/delete.jpg" alt="Delete" onClick={() => handleRemoveItem(item)} />
+          <img className="cart-item-delete" src="/assets/images/delete.jpg" alt="Delete" onClick={() => handleRemoveItem(item)} />
         </div>
       ))}
-      <div>Subtotal: {subtotal}</div>
-      <div>Delivery Charges: {deliveryCharges}</div>
-      <div>Grand Total: {grandTotal}</div>
+      <div className="cart-summary">
+        <div>Subtotal: {subtotal}</div>
+        <div>Delivery Charges: {deliveryCharges}</div>
+        <div>Grand Total: {grandTotal}</div>
+      </div>
       <button>Checkout</button>
     </div>
   );
